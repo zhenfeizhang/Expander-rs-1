@@ -35,7 +35,7 @@ jobs:
       - run: cargo build --no-default-features --release
       - run: cargo build --all-features --release
 
-  test:
+  test-mac:
     name: Test-mac
     runs-on: macos-latest
     steps:
@@ -52,8 +52,8 @@ jobs:
       - run: cargo test --no-default-features --release
       - run: cargo test --all-features --release
 
-  test:
-    name: Test-ubuntu
+  test-linux:
+    name: Test-linux
     runs-on: ubuntu-latest
     steps:
       - uses: styfle/cancel-workflow-action@0.11.0
