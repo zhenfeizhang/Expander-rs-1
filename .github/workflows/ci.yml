@@ -51,7 +51,7 @@ jobs:
       - run: cargo test -p arith
       - run: cargo test --no-default-features --release
       - run: cargo test --all-features --release
-      - run: cargo run --release 4
+      - run: cargo run --release 4 2
 
   # linux tests failed due to "signal: 4, SIGILL: illegal instruction"
   # 
