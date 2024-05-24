@@ -28,7 +28,6 @@ jobs:
       - uses: styfle/cancel-workflow-action@0.11.0
         with:
           all_but_latest: true
-          access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
@@ -37,13 +36,12 @@ jobs:
       - run: cargo build --all-features --release
 
   test:
-    name: Test
+    name: Test-mac
     runs-on: macos-latest
     steps:
       - uses: styfle/cancel-workflow-action@0.11.0
         with:
           all_but_latest: true
-          access_token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/checkout@v3
       - uses: dtolnay/rust-toolchain@stable
       - uses: Swatinem/rust-cache@v2
@@ -53,3 +51,20 @@ jobs:
       - run: cargo test -p arith
       - run: cargo test --no-default-features --release
       - run: cargo test --all-features --release
+
+  test:
+    name: Test-ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      - uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          all_but_latest: true
+      - uses: actions/checkout@v3
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: wget -P data https://storage.googleapis.com/keccak8/ExtractedCircuitMul.txt
+      - run: wget -P data https://storage.googleapis.com/keccak8/ExtractedCircuitAdd.txt
+      - run: wget -P data https://storage.googleapis.com/keccak8/circuit8.txt
+      - run: RUSTFLAGS="-C target-feature=+avx2" cargo test -p arith
+      - run: RUSTFLAGS="-C target-feature=+avx2" cargo test --no-default-features --release
+      - run: RUSTFLAGS="-C target-feature=+avx2" cargo test --all-features --release
