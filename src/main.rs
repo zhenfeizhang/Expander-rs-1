@@ -71,7 +71,7 @@ fn main() {
         .collect::<Vec<_>>();
 
     println!("We are now calculating average throughput, please wait for 1 minutes");
-    loop {
+    for _ in 0..3 {
         thread::sleep(std::time::Duration::from_secs(60));
         let stop_time = std::time::Instant::now();
         let duration = stop_time.duration_since(start_time);
