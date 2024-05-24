@@ -12,7 +12,7 @@ env:
 jobs:
   lint:
     name: Lint
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v3
       - uses: dtolnay/rust-toolchain@stable
@@ -23,7 +23,7 @@ jobs:
 
   build:
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: styfle/cancel-workflow-action@0.11.0
         with:
@@ -38,7 +38,7 @@ jobs:
 
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: styfle/cancel-workflow-action@0.11.0
         with:
